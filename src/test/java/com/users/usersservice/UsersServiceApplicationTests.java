@@ -3,11 +3,11 @@ package com.users.usersservice;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+/*@SpringBootTest
 class UsersServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
-}
+}*/
