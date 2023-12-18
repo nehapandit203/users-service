@@ -40,8 +40,7 @@ public class AuthService {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
         if (userOptional.isEmpty()) {
-//            return this.signUp(email, password);
-            return null;
+            return ResponseEntity.ok(this.signUp(email, password));
         }
 
         User user = userOptional.get();
@@ -75,7 +74,7 @@ public class AuthService {
 
         Map<String, Object>  jsonForJwt = new HashMap<>();
         jsonForJwt.put("email", user.getEmail());
-//        jsonForJwt.put("roles", user.getRoles());
+       jsonForJwt.put("roles", user.getRoles());
         jsonForJwt.put("createdAt", new Date());
         jsonForJwt.put("expiryAt", new Date(LocalDate.now().plusDays(3).toEpochDay()));
 
@@ -100,7 +99,7 @@ public class AuthService {
 //        headers.put(HttpHeaders.SET_COOKIE, token);
 
         MultiValueMapAdapter<String, String> headers = new MultiValueMapAdapter<>(new HashMap<>());
-        headers.add(HttpHeaders.SET_COOKIE, "auth-token:" + token);
+        headers.add(HttpHeaders.SET_COOKIE, "auth-token: " + token);
 
 
 
@@ -151,7 +150,7 @@ public class AuthService {
         }
 
 
-        Jws<Claims> claimsJws = Jwts.parser()
+       /* Jws<Claims> claimsJws = Jwts.parser()
                 .build()
                 .parseSignedClaims(token);
 
@@ -161,7 +160,7 @@ public class AuthService {
 
         if (createdAt.before(new Date())) {
             return SessionStatus.ENDED;
-        }
+        }*/
 
 
 //        if (!session.)
